@@ -9,32 +9,30 @@ public:
     int evalRPN(vector<string> &tokens){ 
         int j=0;
     	int result;
-		while(tokens.size()!=1){
+	while(tokens.size()!=1){
             if(Is_num(tokens[j])){
                 j++;
             }
             else{
-				int a,b;
+		int a,b;
                 a=atoi(tokens[j-2].c_str());//把string数字变为int
                 b=atoi(tokens[j-1].c_str());//把string数字变为int
                 result=Judge(a,b,tokens[j]);               
                 tokens.erase(tokens.begin()+j-2,tokens.begin()+j+1);//清除运算后数字和符号
-				char c[20];
-				my_itoa(result,c);//int to char
-				//_itoa(result,c,10);//int to char
-
-				if(tokens.size()!=0){
-					int k=j-2;
-					tokens.insert(tokens.begin()+k,string(c)); //插入新运算后符号
-				}
-				else
-					tokens.push_back(string(c));
+		char c[20];
+		my_itoa(result,c);//int to char
+		//_itoa(result,c,10);//int to char
+		if(tokens.size()!=0){
+			int k=j-2;
+			tokens.insert(tokens.begin()+k,string(c)); //插入新运算后符号
+		}
+		else
+			tokens.push_back(string(c));
                 j=0;
             }
-
         }
     	cout<<atoi(tokens[0].c_str())<<endl;
-		return atoi(tokens[0].c_str());
+	return atoi(tokens[0].c_str());
     }
 public:
     int Judge(int a,int b,string c){ //判断运算
